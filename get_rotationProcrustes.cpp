@@ -32,15 +32,9 @@ Mat simpleProcrustes(vector<Point3f> object_points, vector<Point3f> scene_points
     // Pass to Mat format
     Mat pA = Mat(object_points);
     Mat pB = Mat(scene_points); 
-
-    // Recenter the points based on their mean
-    Scalar pAmu = mean(pA);
-    Mat pA0     = pA - Mat(pA.size(), pA.type(), pAmu);
-    Scalar pBmu = mean(pB);
-    Mat pB0     = pB - Mat(pB.size(), pB.type(), pBmu);
      
     // Compute SVD
-    Mat A = pA0.reshape(1).t() * pB0.reshape(1);
+    Mat A = pA.reshape(1).t() * pB.reshape(1);
     Mat U, s, Vt;
     SVDecomp(A, s, U, Vt);
 
