@@ -137,12 +137,12 @@ int get_matches(vector<Point3f>& object_points, vector<Point3f>& scene_points, M
 			y = keypoints_1[good_matches[i].queryIdx].pt.y;
 			u = (x-cx)/fx; v = (y-cy)/fy;
 			l = 1/(sqrt((u*u)+(v*v)+1));
-			object_points.push_back(Point3f(u/l, v/l, 1/l));
+			object_points.push_back(Point3f(u*l, v*l, l));
 			x = keypoints_2[good_matches[i].trainIdx].pt.x;
 			y = keypoints_2[good_matches[i].trainIdx].pt.y;
 			u = (x-cx)/fx; v = (y-cy)/fy;
 			l = 1/(sqrt((u*u)+(v*v)+1));
-			scene_points.push_back(Point3f(u/l, v/l, 1/l));
+			scene_points.push_back(Point3f(u*l, v*l, l));
 		}
 		#if PRINT
 		cout << object_points << endl << endl;
